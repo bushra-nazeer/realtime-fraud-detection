@@ -3,7 +3,7 @@
 ``FeatureState`` maintains per-customer running statistics (spend mean, recent
 timestamps for velocity, last-seen time). The *same* object computes features
 for a batch (replayed in time order to build the training matrix) and for the
-live stream — guaranteeing zero train/serve skew.
+live stream, guaranteeing zero train/serve skew.
 """
 
 from __future__ import annotations

@@ -35,7 +35,7 @@ scoring logic never changes between them.
 `DriftMonitor` compares a live window of model scores against a reference
 distribution using **PSI** (population stability index) and the **KS** test.
 The demo stream deliberately shifts its distribution partway through so the
-monitor fires — proving the safety net works.
+monitor fires, proving the safety net works.
 
 ## Modules
 

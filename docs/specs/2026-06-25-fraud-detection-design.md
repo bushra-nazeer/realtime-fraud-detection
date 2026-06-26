@@ -1,8 +1,8 @@
-# realtime-fraud-detection — Design Spec
+# realtime-fraud-detection, Design Spec
 
 - **Date:** 2026-06-25
 - **Status:** Approved
-- **Portfolio role:** Cross-persona flagship (repo 2 of 6) — Data Engineer
+- **Portfolio role:** Cross-persona flagship (repo 2 of 6), Data Engineer
   (streaming), Data Scientist / ML (modeling), MLOps (monitoring).
 
 ## Overview
@@ -10,7 +10,7 @@
 A real-time fraud-detection system: a synthetic transaction stream is scored by
 a gradient-boosted model plus an unsupervised anomaly detector, with online
 drift monitoring and a FastAPI scoring service. Self-contained and reproducible
-— no external data or broker required to run the demo.
+- no external data or broker required to run the demo.
 
 ## Resume claims this proves
 
@@ -25,19 +25,19 @@ drift monitoring and a FastAPI scoring service. Self-contained and reproducible
 ## Data
 
 Synthetic generator (`generator.py`): legitimate transactions plus injected
-fraud signatures — amount spikes / card-testing micro-charges, night-skewed
+fraud signatures, amount spikes / card-testing micro-charges, night-skewed
 timing, more foreign + higher distance, riskier merchant categories. Drift knobs
 (`amount_scale`, `foreign_boost`, `fraud_rate`) let the demo stream shift
 distribution partway through to exercise the monitor.
 
 ## Key design decisions
 
-- **Shared `FeatureState`** for train, stream, and API — eliminates train/serve skew.
-- **Pluggable transport** — Kafka for production, in-memory for demo/tests, so
+- **Shared `FeatureState`** for train, stream, and API, eliminates train/serve skew.
+- **Pluggable transport**: Kafka for production, in-memory for demo/tests, so
   everything verifies without a broker download.
-- **Custom PSI + KS drift** instead of a heavyweight dependency — lighter and
+- **Custom PSI + KS drift** instead of a heavyweight dependency, lighter and
   demonstrates the underlying statistics.
-- **Time-ordered feature build** — velocity/recency computed by replaying
+- **Time-ordered feature build**: velocity/recency computed by replaying
   transactions in timestamp order; no future leakage.
 
 ## Components

@@ -2,7 +2,7 @@
 
 Produces realistic-looking card transactions with injected fraud signatures
 (amount spikes / card-testing micro-charges, night-skewed timing, more foreign
-and higher-distance activity, riskier merchant categories). No external data —
+and higher-distance activity, riskier merchant categories). No external data -
 fully reproducible from a seed, and the fraud patterns are ours to control,
 which is exactly what a streaming demo needs.
 """
@@ -57,7 +57,7 @@ def generate_transactions(
     customer_ids = rng.integers(0, cfg.generator.n_customers, size=n)
 
     # "Stealth" fraud behaves exactly like legitimate activity, which caps the
-    # achievable recall realistically — a fraud model that catches 100% is a
+    # achievable recall realistically, a fraud model that catches 100% is a
     # red flag, not a triumph. Only "obvious" fraud carries detectable signal.
     stealth = (rng.random(n) < 0.15) & (is_fraud == 1)
     obvious = (is_fraud == 1) & (~stealth)

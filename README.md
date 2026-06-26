@@ -20,17 +20,17 @@ monitoring** and a **FastAPI** scoring service.
 | Metric | XGBoost | LightGBM baseline |
 |---|---|---|
 | **ROC-AUC** | **0.864** | 0.809 |
-| PR-AUC | 0.500 | — |
-| Detection rate (recall) @ operating point | 0.50 | — |
-| Precision @ operating point | 0.50 | — |
-| False-positive rate | 0.6% | — |
+| PR-AUC | 0.500 |, |
+| Detection rate (recall) @ operating point | 0.50 |, |
+| Precision @ operating point | 0.50 |, |
+| False-positive rate | 0.6% |, |
 
 Fraud is ~1.2% of transactions, and ~15% of it is "stealth" fraud crafted to
-look identical to legitimate spend — which honestly caps recall, exactly as it
+look identical to legitimate spend, which honestly caps recall, exactly as it
 does in production. The operating threshold targets 50% precision (fraud
 alerting trades precision for coverage; it never chases 90%).
 
-| Precision–Recall | Score distribution by class |
+| Precision-Recall | Score distribution by class |
 |---|---|
 | ![PR curve](reports/figures/precision_recall.png) | ![Scores](reports/figures/score_distribution.png) |
 
@@ -45,20 +45,20 @@ drift events detected: 2   (KS p-value collapses to ~1e-35 once the shift lands)
 ```
 
 The drift monitor catches the shift via the KS test even before PSI crosses its
-threshold — the safety net that tells you a deployed model needs retraining.
+threshold, the safety net that tells you a deployed model needs retraining.
 
 ## What it demonstrates
 
-- **Streaming architecture** — a `MessageSource` abstraction with real Kafka and
+- **Streaming architecture**: a `MessageSource` abstraction with real Kafka and
   in-memory backends; identical scoring logic for both.
-- **Modeling** — XGBoost (Optuna-tuned) + LightGBM baseline, imbalance-aware,
+- **Modeling**: XGBoost (Optuna-tuned) + LightGBM baseline, imbalance-aware,
   reporting the metrics that matter for fraud (detection rate, FPR, PR-AUC).
-- **Anomaly detection** — IsolationForest as a complementary unsupervised signal.
-- **Drift monitoring** — custom PSI + Kolmogorov–Smirnov detector over the live
+- **Anomaly detection**: IsolationForest as a complementary unsupervised signal.
+- **Drift monitoring**: custom PSI + Kolmogorov-Smirnov detector over the live
   score stream.
-- **No train/serve skew** — one `FeatureState` builds features for training, the
+- **No train/serve skew**: one `FeatureState` builds features for training, the
   stream, and the API.
-- **MLOps** — MLflow tracking, FastAPI service, Docker, CI (ruff + pytest).
+- **MLOps**: MLflow tracking, FastAPI service, Docker, CI (ruff + pytest).
 
 ## Architecture
 
@@ -76,7 +76,7 @@ flowchart LR
 ## Quickstart
 
 ```bash
-# Docker — serve the scoring API (model baked in)
+# Docker, serve the scoring API (model baked in)
 docker compose up --build api          # http://localhost:8000
 
 # Local with uv

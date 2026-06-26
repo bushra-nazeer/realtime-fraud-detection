@@ -22,7 +22,7 @@ class MessageSource(ABC):
 
 
 class InMemorySource(MessageSource):
-    """FIFO queue used for the demo and tests — no broker required."""
+    """FIFO queue used for the demo and tests, no broker required."""
 
     def __init__(self):
         self._queue: deque[dict] = deque()
