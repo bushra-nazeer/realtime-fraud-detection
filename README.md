@@ -73,6 +73,10 @@ flowchart LR
     M -.loads.-> API[api/main.py<br/>POST /score]
 ```
 
+## Demo
+
+An interactive Streamlit app (`streamlit_app.py`) lets you score a transaction and see its fraud probability with the top contributing factors. Run it locally with `streamlit run streamlit_app.py`, or deploy it free on [Streamlit Community Cloud](https://streamlit.io/cloud) by connecting this repo and setting the main file to `streamlit_app.py`.
+
 ## Quickstart
 
 ```bash
