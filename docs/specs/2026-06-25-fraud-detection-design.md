@@ -2,8 +2,6 @@
 
 - **Date:** 2026-06-25
 - **Status:** Approved
-- **Portfolio role:** Cross-persona flagship (repo 2 of 6), Data Engineer
-  (streaming), Data Scientist / ML (modeling), MLOps (monitoring).
 
 ## Overview
 
@@ -12,9 +10,9 @@ a gradient-boosted model plus an unsupervised anomaly detector, with online
 drift monitoring and a FastAPI scoring service. Self-contained and reproducible
 - no external data or broker required to run the demo.
 
-## Resume claims this proves
+## What it demonstrates
 
-| Claim | How |
+| Capability | How |
 |---|---|
 | "$4.2M real-time fraud detection system" | End-to-end streaming detection demo |
 | Kafka streaming / real-time intelligence | `MessageSource` with Kafka + in-memory backends |
