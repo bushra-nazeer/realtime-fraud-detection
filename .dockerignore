@@ -1,0 +1,10 @@
+.git
+.venv
+venv
+mlruns
+mlartifacts
+.pytest_cache
+.ruff_cache
+__pycache__
+*.egg-info
+.DS_Store

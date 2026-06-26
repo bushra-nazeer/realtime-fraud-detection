@@ -1,0 +1,40 @@
+# Central configuration for the fraud-detection pipeline.
+
+paths:
+  model_path: models/model.pkl
+  anomaly_path: models/anomaly.pkl
+  model_metadata: models/metadata.json
+  reports_dir: reports
+  figures_dir: reports/figures
+
+random_state: 42
+test_size: 0.25
+
+# Synthetic data generator
+generator:
+  n_customers: 2000
+  n_transactions: 60000
+  fraud_rate: 0.012          # ~1.2% of transactions are fraudulent
+  merchant_categories: [grocery, restaurant, travel, electronics, fuel, online, atm, healthcare]
+
+# Modeling
+optuna:
+  n_trials: 20
+  timeout_seconds: 600
+
+# Operating point: choose threshold meeting this precision floor.
+threshold:
+  target_precision: 0.50
+
+# Drift detection
+drift:
+  psi_threshold: 0.2         # >0.2 == significant population shift
+  ks_pvalue_threshold: 0.01
+  window_size: 2000
+
+# Streaming demo
+stream:
+  topic: transactions
+  bootstrap_servers: localhost:9092
+  demo_events: 5000
+  drift_after: 3000          # inject distribution drift partway through the demo

@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fraud"
+version = "0.1.0"
+description = "Real-time fraud detection: synthetic transaction streaming, gradient-boosted + anomaly models, drift monitoring, and a FastAPI scoring service."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Bushra Nazeer", email = "bushnaze@gmail.com" }]
+keywords = ["fraud-detection", "streaming", "kafka", "xgboost", "anomaly-detection", "mlops"]
+
+dependencies = [
+    "pandas>=2.1",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "xgboost>=2.0",
+    "lightgbm>=4.3",
+    "optuna>=3.6",
+    "shap>=0.45",
+    "mlflow>=2.12",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "joblib>=1.4",
+    "matplotlib>=3.8",
+    "kafka-python>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "httpx>=0.27",
+]
+
+[project.urls]
+Homepage = "https://github.com/bushra-nazeer/realtime-fraud-detection"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fraud"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]
